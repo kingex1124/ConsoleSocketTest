@@ -1,15 +1,13 @@
-﻿using ConsoleSocketClient.Model;
+﻿using ConsoleSockClient2.Model;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Net.Sockets;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleSocketClient
+namespace ConsoleSockClient2
 {
     class Program
     {
@@ -21,12 +19,11 @@ namespace ConsoleSocketClient
         {
             Program myNetworkClient = new Program();
 
-            Console.WriteLine("輸入連接機名稱 : ");
             //取得主機名稱
-            string hostName = "127.0.0.1";// Console.ReadLine();
-            Console.WriteLine("輸入連接通訊埠 : ");
+            string hostName = "127.0.0.1";
+          
             //取得連線 IP 位址
-            int connectPort = 36000; // int.Parse(Console.ReadLine());
+            int connectPort = 36000;
             //建立 TcpClient 物件
             myNetworkClient.myTcpClient = new TcpClient();
             try
@@ -45,38 +42,8 @@ namespace ConsoleSocketClient
 
             myNetworkClient.WriteListData();
             myNetworkClient.ReadListData();
-
-            //myNetworkClient.WriteData();
-            //myNetworkClient.ReadData();
+            
             Console.ReadKey();
-        }
-
-        //寫入資料
-        void WriteData()
-        {
-            String strTest = "this is a test string !!";
-            //將字串轉 byte 陣列，使用 ASCII 編碼
-            Byte[] myBytes = Encoding.ASCII.GetBytes(strTest);
-
-            Console.WriteLine("建立網路資料流 !!");
-            //建立網路資料流
-            myNetworkStream = myTcpClient.GetStream();
-
-            Console.WriteLine("將字串寫入資料流　!!");
-            //將字串寫入資料流
-            myNetworkStream.Write(myBytes, 0, myBytes.Length);
-        }
-
-        //讀取資料
-        void ReadData()
-        {
-            Console.WriteLine("從網路資料流讀取資料 !!");
-            //從網路資料流讀取資料
-            int bufferSize = myTcpClient.ReceiveBufferSize;
-            byte[] myBufferBytes = new byte[bufferSize];
-            myNetworkStream.Read(myBufferBytes, 0, bufferSize);
-            //取得資料並且解碼文字
-            Console.WriteLine(Encoding.ASCII.GetString(myBufferBytes, 0, bufferSize));
         }
 
         //寫入資料
@@ -92,7 +59,7 @@ namespace ConsoleSocketClient
 
             //將字串轉 byte 陣列，使用 ASCII 編碼
             Byte[] myBytes = Encoding.ASCII.GetBytes(jsonData);
-      
+
             Console.WriteLine("建立網路資料流 !!");
             //建立網路資料流
             myNetworkStream = myTcpClient.GetStream();

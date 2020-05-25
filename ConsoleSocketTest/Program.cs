@@ -30,6 +30,7 @@ namespace ConsoleSocketTest
             {
                 try
                 {
+                   
                     //偵測是否有來自用戶端的連線要求，若是
                     //用戶端請求連線成功，就會秀出訊息。
                     if (mySocket.Connected)
@@ -58,6 +59,7 @@ namespace ConsoleSocketTest
                         Console.ReadLine();
                         //將接收到的資料回傳給用戶端
                         mySocket.Send(myBufferBytes, myBufferBytes.Length, 0);
+                        mySocket = myTcpListener.AcceptSocket();
                     }
                 }
                 catch (Exception e)
