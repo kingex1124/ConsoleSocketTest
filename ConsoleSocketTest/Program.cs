@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleSocketTest
@@ -21,16 +22,17 @@ namespace ConsoleSocketTest
 
             //建立監聽物件
             TcpListener myTcpListener = new TcpListener(theIPAddress, 36000);
+
             //啟動監聽
             myTcpListener.Start();
             Console.WriteLine("通訊埠 36000 等待用戶端連線...... !!");
             Socket mySocket = myTcpListener.AcceptSocket();
-           
+
             do
             {
                 try
                 {
-                   
+
                     //偵測是否有來自用戶端的連線要求，若是
                     //用戶端請求連線成功，就會秀出訊息。
                     if (mySocket.Connected)
@@ -69,8 +71,9 @@ namespace ConsoleSocketTest
                     break;
                 }
 
-            } 
+            }
             while (true);
         }
+
     }
 }
