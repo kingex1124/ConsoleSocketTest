@@ -21,8 +21,8 @@ namespace ConsoleSocketClient3
 
         static void Main(string[] args)
         {
-            
 
+            // ThreadPool.SetMinThreads(1000, 1000);
             Console.WriteLine("Main-Start【ThreadId=" + Thread.CurrentThread.ManagedThreadId + "】：" + DateTime.Now);
             TaskFactory taskFactory = new TaskFactory();
             Task[] taskArr = new Task[100];
@@ -66,7 +66,7 @@ namespace ConsoleSocketClient3
                 myTcpClient.Connect(hostName, connectPort);
                 Console.WriteLine("連線成功 !!\n");
             }
-            catch
+            catch(Exception e)
             {
                 Console.WriteLine
                            ("主機 {0} 通訊埠 {1} 無法連接  !!", hostName, connectPort);

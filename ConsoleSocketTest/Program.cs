@@ -59,6 +59,7 @@ namespace ConsoleSocketTest
 
                         Console.WriteLine("按下 [任意鍵] 將資料回傳至用戶端 !!");
                         Console.ReadLine();
+
                         //將接收到的資料回傳給用戶端
                         mySocket.Send(myBufferBytes, myBufferBytes.Length, 0);
                         mySocket = myTcpListener.AcceptSocket();
